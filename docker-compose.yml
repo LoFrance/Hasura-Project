@@ -7,6 +7,15 @@ services:
       - ./db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgrespassword
+  pgadmin:
+    image: fenglc/pgadmin4
+    container_name: pgadmin
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
+    ports:
+      - 5050:5050
   graphql-engine:
     image: hasura/graphql-engine:v2.2.0
     ports:
